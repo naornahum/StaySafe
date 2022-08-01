@@ -58,7 +58,12 @@ p {
   img {
     max-width: 70%;
     padding: 50px;
+    // :hover {
+    //   transition: transform 0.5s;
+    //   transform: translateY(-5px);
+    // }
   }
+
   h1 {
     font-size: 50px;
     line-height: 60px;
