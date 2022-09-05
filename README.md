@@ -1,10 +1,23 @@
-# StaySafe
+# Удачи, товарищ!
 
-Hello!
-This project has pure intentions of bringing healthy lifestyle to the LGBTQ+ community.
+## How to run the project:
 
-What will you be able to do with this website?
+1. First
 
-1. make appointments with professional doctors.
-2. appointment for STD tests
-3. get vaccinated
+```
+npm ci
+```
+
+2. Then
+
+```
+cd server/
+```
+
+3. Last
+
+```
+npm run dev
+```
+
+Enjoy!
