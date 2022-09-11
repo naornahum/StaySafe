@@ -14,42 +14,42 @@ function createDB() {
     const db = new better_sqlite3_1.default("Project.db", { verbose: console.log });
     // Create table
     const prepareStatements = [
-        db.prepare(`CREATE TABLE IF NOT EXISTS locations(
-                  location_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  lat INTEGER NOT NULL,
-                  lon INTEGER NOT NULL,
-                  base_name TEXT NOT NULL,
-                  nearest_city TEXT NOT NULL
+        db.prepare(`CREATE TABLE IF NOT EXISTS persons(
+              person_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              person_full_name TEXT NOT NULL,
+              birthday DATE NOT NULL,
+              phone_number TEXT NOT NULL,
+              clinic_id INTEGER NOT NULL,
+              FOREIGN KEY(clinic_id)
+                  REFERENCES clinic(clinic_id)
           )`),
-        db.prepare(`CREATE TABLE IF NOT EXISTS officers(
-              officer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name TEXT NOT NULL,
-              email TEXT NOT NULL,
-              phone TEXT NOT NULL
+        db.prepare(`CREATE TABLE IF NOT EXISTS nurses(
+              nurse_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              nurse_name TEXT NOT NULL,
+              clinic_id INTEGER NOT NULL,
+              FOREIGN KEY(clinic_id)
+                  REFERENCES clinic(clinic_id)
           )`),
-        db.prepare(`CREATE TABLE IF NOT EXISTS missiles(
-              missile_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              model TEXT NOT NULL,
-              quantity INTEGER NOT NULL,
-              size INTEGER NOT NULL,
-              manufacturing_year INTEGER NOT NULL,
-              location_id INTEGER NOT NULL,
-              officer_id INTEGER NOT NULL,
-              FOREIGN KEY(location_id)
-                  REFERENCES locations(location_id),
-              FOREIGN KEY(officer_id)
-                  REFERENCES officers(officer_id)
+        db.prepare(`CREATE TABLE IF NOT EXISTS vaccines(
+              vaccine_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              vaccine_name TEXT NOT NULL
           )`),
-        db.prepare(`CREATE TABLE IF NOT EXISTS locations_history(
-              location_history_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              arrival_date INTEGER NOT NULL,
-              departure_date INTEGER,
-              location_id INTEGER NOT NULL,
-              missile_id INTEGER NOT NULL,
-              FOREIGN KEY(location_id)
-                  REFERENCES locations(location_id),
-              FOREIGN KEY(missile_id)
-                  REFERENCES missiles(missile_id)
+        db.prepare(`CREATE TABLE IF NOT EXISTS clinic(
+              clinic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              clinic_name TEXT NOT NULL
+          )`),
+        db.prepare(`CREATE TABLE IF NOT EXISTS vaccines_history(
+              person_id INTEGER NOT NULL,
+              nurse_id INTEGER NOT NULL,
+              clinic_id INTEGER NOT NULL,
+              vaccine_date INTEGER NOT NULL,
+              FOREIGN KEY(person_id)
+                  REFERENCES persons(person_id),
+              FOREIGN KEY(nurse_id)
+                  REFERENCES nurses(nurse_id),
+              FOREIGN KEY(clinic_id)
+                  REFERENCES clinic(clinic_id)
+              CONSTRAINT PK_VaccineHistory PRIMARY KEY (person_id,nurse_id,clinic_id)
           )`),
     ];
     prepareStatements.forEach((statement) => {
