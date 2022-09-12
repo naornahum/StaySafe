@@ -1,9 +1,9 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import missileRouter from "./routes/missileRouter";
+import nurseRouter from "./routes/nursesRouter";
 import { insertLocations } from "./models/locations";
 import { insertLocationsHistory } from "./models/location_history";
-import { insertMissiles } from "./models/missiles";
+import { insertNurses } from "./models/nurses";
 import { insertPatients } from "./models/patients";
 import locationHistoryRouter from "./routes/locationHistoryRouter";
 import locationRouter from "./routes/locationRouter";
@@ -20,15 +20,15 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
-app.use("/missiles", missileRouter);
+app.use("/missiles", nurseRouter);
 app.use("/officers", patientRouter);
 app.use("/locations", locationRouter);
 app.use("/locationsHistory", locationHistoryRouter);
 
 app.get("/init", (req, res) => {
   insertPatients();
+  insertNurses();
   insertLocations();
-  insertMissiles();
   insertLocationsHistory();
   res.send(true);
 });
