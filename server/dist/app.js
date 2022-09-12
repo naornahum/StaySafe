@@ -9,10 +9,10 @@ const missileRouter_1 = __importDefault(require("./routes/missileRouter"));
 const locations_1 = require("./models/locations");
 const location_history_1 = require("./models/location_history");
 const missiles_1 = require("./models/missiles");
-const officers_1 = require("./models/officers");
+const patients_1 = require("./models/patients");
 const locationHistoryRouter_1 = __importDefault(require("./routes/locationHistoryRouter"));
 const locationRouter_1 = __importDefault(require("./routes/locationRouter"));
-const officerRouter_1 = __importDefault(require("./routes/officerRouter"));
+const patientRouter_1 = __importDefault(require("./routes/patientRouter"));
 const cors = require("cors");
 const bodyParser = require("body-parser");
 dotenv_1.default.config();
@@ -22,11 +22,11 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 app.use("/missiles", missileRouter_1.default);
-app.use("/officers", officerRouter_1.default);
+app.use("/officers", patientRouter_1.default);
 app.use("/locations", locationRouter_1.default);
 app.use("/locationsHistory", locationHistoryRouter_1.default);
 app.get("/init", (req, res) => {
-    (0, officers_1.insertOfficers)();
+    (0, patients_1.insertPatients)();
     (0, locations_1.insertLocations)();
     (0, missiles_1.insertMissiles)();
     (0, location_history_1.insertLocationsHistory)();

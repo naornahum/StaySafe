@@ -1,9 +1,9 @@
 import { completedDatabase } from "../database";
 import { deleteMissileByID } from "./missiles";
 
-export function insertOfficers() {
+export function insertPatients() {
   const statement = completedDatabase.prepare(
-    "INSERT INTO officers (name,email,phone) VALUES(?,?,?)"
+    "INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)"
   );
 
   // Random data from Mockaroo - Credit to Rom React ©
@@ -66,51 +66,51 @@ export function insertOfficers() {
   }
 }
 
-export function getOfficers() {
-  const statement = completedDatabase.prepare("SELECT * FROM officers");
-  const officers = statement.all();
-  return officers;
+export function getPatients() {
+  const statement = completedDatabase.prepare("SELECT * FROM patients");
+  const patients = statement.all();
+  return patients;
 }
 
-export function getOfficerByID(officer_id: string) {
-  const statement = completedDatabase.prepare("SELECT * FROM officers WHERE officer_id = ?");
-  const officers = statement.all(officer_id);
-  return officers;
+export function getPatientByID(patient_id: string) {
+  const statement = completedDatabase.prepare("SELECT * FROM patients WHERE patient_id = ?");
+  const patients = statement.all(patient_id);
+  return patients;
 }
 
-export function createOfficer(officer: any) {
+export function createPatient(patient: any) {
   const statement = completedDatabase.prepare(
-    "INSERT INTO officers (name,email,phone) VALUES(?,?,?)"
+    "INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)"
   );
-  return statement.run([officer.name, officer.email, officer.phone]);
+  return statement.run([patient.name, patient.email, patient.phone]);
 }
 
-export function updateOfficer(officerId: any, officers: any) {
-  const oldOfficer = completedDatabase
-    .prepare(`SELECT * FROM officers WHERE officer_id = ${officerId} `)
+export function updatePatient(patientID: any, patients: any) {
+  const oldPatient = completedDatabase
+    .prepare(`SELECT * FROM patients WHERE patient_id = ${patientID} `)
     .get();
-  const newOfficer = { ...oldOfficer, ...officers };
+  const newPatient = { ...oldPatient, ...patients };
 
   const statement = completedDatabase.prepare(
-    "UPDATE officers SET name = ?,email = ?,phone = ? WHERE officer_id = ?"
+    "UPDATE patients SET name = ?,email = ?,phone = ? WHERE patient_id = ?"
   );
-  statement.run([newOfficer.name, newOfficer.email, newOfficer.phone, officerId]);
-  return newOfficer;
+  statement.run([newPatient.name, newPatient.email, newPatient.phone, patientID]);
+  return newPatient;
 }
 
-export function deleteOfficerByID(officer_id: string) {
-  const missilesLinkedToOfficerStatement = completedDatabase.prepare(
-    "SELECT missile_id FROM missiles WHERE officer_id = ?"
+export function deletePatientByID(patient_id: string) {
+  const missilesLinkedToPatientStatement = completedDatabase.prepare(
+    "SELECT missile_id FROM missiles WHERE patient_id = ?"
   );
 
-  const missilesLinkedToOfficer = missilesLinkedToOfficerStatement.all(officer_id);
+  const missilesLinkedToPatient = missilesLinkedToPatientStatement.all(patient_id);
 
-  missilesLinkedToOfficer.forEach((missile) => {
+  missilesLinkedToPatient.forEach((missile) => {
     deleteMissileByID(missile.missile_id);
   });
-  const officer = getOfficerByID(officer_id);
-  const deleteStatement = completedDatabase.prepare("DELETE FROM officers WHERE officer_id = ?");
-  deleteStatement.run(officer_id);
+  const patient = getPatientByID(patient_id);
+  const deleteStatement = completedDatabase.prepare("DELETE FROM patients WHERE patient_id = ?");
+  deleteStatement.run(patient_id);
 
-  return officer;
+  return patient;
 }

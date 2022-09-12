@@ -4,7 +4,7 @@ exports.deleteOfficerByID = exports.updateOfficer = exports.createOfficer = expo
 const database_1 = require("../database");
 const missiles_1 = require("./missiles");
 function insertOfficers() {
-    const statement = database_1.completedDatabase.prepare("INSERT INTO persons (full_name,birthday,phone) VALUES(?,?,?)");
+    const statement = database_1.completedDatabase.prepare("INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)");
     // Random data from Mockaroo - Credit to Rom React ©
     const detailes = [
         ["Leora Piegrome", "lpiegrome0@nyu.edu", "670-656-2087"],

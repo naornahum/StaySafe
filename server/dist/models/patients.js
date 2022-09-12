@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteOfficerByID = exports.updateOfficer = exports.createOfficer = exports.getOfficerByID = exports.getOfficers = exports.insertOfficers = void 0;
+exports.deletePatientByID = exports.updatePatient = exports.createPatient = exports.getPatientByID = exports.getPatients = exports.insertPatients = void 0;
 const database_1 = require("../database");
 const missiles_1 = require("./missiles");
-function insertOfficers() {
-    const statement = database_1.completedDatabase.prepare("INSERT INTO persons (full_name,birthday,phone) VALUES(?,?,?)");
+function insertPatients() {
+    const statement = database_1.completedDatabase.prepare("INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)");
     // Random data from Mockaroo - Credit to Rom React ©
     const detailes = [
         ["Leora Piegrome", "lpiegrome0@nyu.edu", "670-656-2087"],
@@ -63,43 +63,43 @@ function insertOfficers() {
         statement.run(...element);
     }
 }
-exports.insertOfficers = insertOfficers;
-function getOfficers() {
-    const statement = database_1.completedDatabase.prepare("SELECT * FROM officers");
-    const officers = statement.all();
-    return officers;
+exports.insertPatients = insertPatients;
+function getPatients() {
+    const statement = database_1.completedDatabase.prepare("SELECT * FROM patients");
+    const patients = statement.all();
+    return patients;
 }
-exports.getOfficers = getOfficers;
-function getOfficerByID(officer_id) {
-    const statement = database_1.completedDatabase.prepare("SELECT * FROM officers WHERE officer_id = ?");
-    const officers = statement.all(officer_id);
-    return officers;
+exports.getPatients = getPatients;
+function getPatientByID(patient_id) {
+    const statement = database_1.completedDatabase.prepare("SELECT * FROM patients WHERE patient_id = ?");
+    const patients = statement.all(patient_id);
+    return patients;
 }
-exports.getOfficerByID = getOfficerByID;
-function createOfficer(officer) {
-    const statement = database_1.completedDatabase.prepare("INSERT INTO officers (name,email,phone) VALUES(?,?,?)");
-    return statement.run([officer.name, officer.email, officer.phone]);
+exports.getPatientByID = getPatientByID;
+function createPatient(patient) {
+    const statement = database_1.completedDatabase.prepare("INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)");
+    return statement.run([patient.name, patient.email, patient.phone]);
 }
-exports.createOfficer = createOfficer;
-function updateOfficer(officerId, officers) {
-    const oldOfficer = database_1.completedDatabase
-        .prepare(`SELECT * FROM officers WHERE officer_id = ${officerId} `)
+exports.createPatient = createPatient;
+function updatePatient(patientID, patients) {
+    const oldPatient = database_1.completedDatabase
+        .prepare(`SELECT * FROM patients WHERE patient_id = ${patientID} `)
         .get();
-    const newOfficer = Object.assign(Object.assign({}, oldOfficer), officers);
-    const statement = database_1.completedDatabase.prepare("UPDATE officers SET name = ?,email = ?,phone = ? WHERE officer_id = ?");
-    statement.run([newOfficer.name, newOfficer.email, newOfficer.phone, officerId]);
-    return newOfficer;
+    const newPatient = Object.assign(Object.assign({}, oldPatient), patients);
+    const statement = database_1.completedDatabase.prepare("UPDATE patients SET name = ?,email = ?,phone = ? WHERE patient_id = ?");
+    statement.run([newPatient.name, newPatient.email, newPatient.phone, patientID]);
+    return newPatient;
 }
-exports.updateOfficer = updateOfficer;
-function deleteOfficerByID(officer_id) {
-    const missilesLinkedToOfficerStatement = database_1.completedDatabase.prepare("SELECT missile_id FROM missiles WHERE officer_id = ?");
-    const missilesLinkedToOfficer = missilesLinkedToOfficerStatement.all(officer_id);
-    missilesLinkedToOfficer.forEach((missile) => {
+exports.updatePatient = updatePatient;
+function deletePatientByID(patient_id) {
+    const missilesLinkedToPatientStatement = database_1.completedDatabase.prepare("SELECT missile_id FROM missiles WHERE patient_id = ?");
+    const missilesLinkedToPatient = missilesLinkedToPatientStatement.all(patient_id);
+    missilesLinkedToPatient.forEach((missile) => {
         (0, missiles_1.deleteMissileByID)(missile.missile_id);
     });
-    const officer = getOfficerByID(officer_id);
-    const deleteStatement = database_1.completedDatabase.prepare("DELETE FROM officers WHERE officer_id = ?");
-    deleteStatement.run(officer_id);
-    return officer;
+    const patient = getPatientByID(patient_id);
+    const deleteStatement = database_1.completedDatabase.prepare("DELETE FROM patients WHERE patient_id = ?");
+    deleteStatement.run(patient_id);
+    return patient;
 }
-exports.deleteOfficerByID = deleteOfficerByID;
+exports.deletePatientByID = deletePatientByID;
