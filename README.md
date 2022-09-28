@@ -24,10 +24,18 @@ npm ci
 cd server/
 ```
 
-3. Last
+3. To create the database:
 
 ```
 npm run dev
 ```
 
+4. To add the info into the database:
+
+```
+http://localhost:4000/init
+```
+
 Enjoy!
+
+![alt text](https://i.imgur.com/itEQ2SF.png)
