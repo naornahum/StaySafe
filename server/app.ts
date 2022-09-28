@@ -1,12 +1,12 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
+import clinicRouter from "./routes/clinicRouter";
 import nurseRouter from "./routes/nursesRouter";
+import vaccineRouter from "./routes/vaccineRouter";
+import patientRouter from "./routes/patientRouter";
+import vaccineHistoryRouter from "./routes/vaccineHistoryRouter";
 import { insertNurses } from "./models/nurses";
 import { insertPatients } from "./models/patients";
-import locationHistoryRouter from "./routes/vaccineHistoryRouter";
-import patientRouter from "./routes/patientRouter";
-import vaccineRouter from "./routes/vaccineRouter";
-import clinicRouter from "./routes/clinicRouter";
 import { insertClinics } from "./models/clinics";
 import { insertVaccines } from "./models/vaccines";
 import { insertVaccinesHistory } from "./models/vaccine_history";
@@ -26,7 +26,7 @@ app.use("/clinics", clinicRouter);
 app.use("/nurses", nurseRouter);
 app.use("/vaccines", vaccineRouter);
 app.use("/patients", patientRouter);
-app.use("/locationsHistory", locationHistoryRouter);
+app.use("/locationsHistory", vaccineHistoryRouter);
 
 app.get("/init", (req, res) => {
   insertClinics();
