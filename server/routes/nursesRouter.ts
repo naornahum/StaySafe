@@ -15,21 +15,25 @@ nurseRouter.get("/", (req, res) => {
   res.send(missiles);
 });
 
+// Get a nurse by ID
 nurseRouter.get("/:id", (req, res) => {
   const missile = getNurseByID(req.params.id);
   res.send(missile);
 });
 
+// Create nurses
 nurseRouter.post("/", (req, res) => {
   const body = req.body;
   const newMissile = createNurses(body);
   res.send({ id: newMissile.lastInsertRowid });
 });
 
+// Update nurse
 nurseRouter.put("/:id", (req, res) => {
   const body = req.body;
   console.log(body);
-  const currentMissile = getNurseByID(req.params.id)[0];
+
+  // const currentMissile = getNurseByID(req.params.id)[0];
 
   // if (body.location_id && currentMissile.location_id !== body.location_id) {
   //   // Update old location history depurture date
@@ -46,6 +50,7 @@ nurseRouter.put("/:id", (req, res) => {
   res.send(updatedMissile);
 });
 
+// Delete nurse
 nurseRouter.delete("/:id", (req, res) => {
   const deletedMissile = deleteNurseByID(req.params.id);
   res.send(deletedMissile);
