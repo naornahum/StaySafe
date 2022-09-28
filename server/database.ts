@@ -12,14 +12,9 @@ function createDB() {
   // Create tables
   const prepareStatements = [
     db.prepare(
-      `CREATE TABLE IF NOT EXISTS patients(
-              patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              full_name TEXT NOT NULL,
-              birthday DATE NOT NULL,
-              phone_number TEXT NOT NULL,
-              clinic_id INTEGER NOT NULL,
-              FOREIGN KEY(clinic_id)
-                  REFERENCES clinic(clinic_id)
+      `CREATE TABLE IF NOT EXISTS clinics(
+              clinic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              clinic_name TEXT NOT NULL
           )`
     ),
 
@@ -29,7 +24,7 @@ function createDB() {
               nurse_name TEXT NOT NULL,
               clinic_id INTEGER NOT NULL,
               FOREIGN KEY(clinic_id)
-                  REFERENCES clinic(clinic_id)
+                  REFERENCES clinics(clinic_id)
           )`
     ),
 
@@ -41,9 +36,14 @@ function createDB() {
     ),
 
     db.prepare(
-      `CREATE TABLE IF NOT EXISTS clinics(
-              clinic_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              clinic_name TEXT NOT NULL
+      `CREATE TABLE IF NOT EXISTS patients(
+              patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              full_name TEXT NOT NULL,
+              birthday DATE NOT NULL,
+              phone_number TEXT NOT NULL,
+              clinic_id INTEGER NOT NULL,
+              FOREIGN KEY(clinic_id)
+                  REFERENCES clinics(clinic_id)
           )`
     ),
 
@@ -58,7 +58,7 @@ function createDB() {
               FOREIGN KEY(nurse_id)
                   REFERENCES nurses(nurse_id),
               FOREIGN KEY(clinic_id)
-                  REFERENCES clinic(clinic_id)
+                  REFERENCES clinics(clinic_id)
               CONSTRAINT PK_VaccineHistory PRIMARY KEY (patient_id,nurse_id,clinic_id)
           )`
     ),
