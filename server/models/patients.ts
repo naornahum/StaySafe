@@ -1,13 +1,13 @@
 import { completedDatabase } from "../database";
-import { deleteMissileByID } from "./nurses";
+import { deleteNurseByID } from "./nurses";
 
 export function insertPatients() {
   const statement = completedDatabase.prepare(
     "INSERT INTO patients (full_name,birthday,phone_number,clinic_id) VALUES(?,?,?,?)"
   );
 
-  // Random data from Mockaroo - Credit to Rom React ©
-  const detailes = [["Leora Piegrome", "lpiegrome0@nyu.edu", "670-656-2087"]];
+  // Random data from Mockaroo
+  const detailes = [["Leora Piegrome", "03/10/1998", "670-656-2087", 1]];
 
   for (let index = 0; index < detailes.length; index++) {
     const element = detailes[index];
@@ -55,7 +55,7 @@ export function deletePatientByID(patient_id: string) {
   const missilesLinkedToPatient = missilesLinkedToPatientStatement.all(patient_id);
 
   missilesLinkedToPatient.forEach((missile) => {
-    deleteMissileByID(missile.missile_id);
+    deleteNurseByID(missile.missile_id);
   });
   const patient = getPatientByID(patient_id);
   const deleteStatement = completedDatabase.prepare("DELETE FROM patients WHERE patient_id = ?");

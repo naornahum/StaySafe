@@ -41,7 +41,7 @@ function createDB() {
     ),
 
     db.prepare(
-      `CREATE TABLE IF NOT EXISTS clinic(
+      `CREATE TABLE IF NOT EXISTS clinics(
               clinic_id INTEGER PRIMARY KEY AUTOINCREMENT,
               clinic_name TEXT NOT NULL
           )`

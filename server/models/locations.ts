@@ -6,7 +6,7 @@ export function insertLocations() {
     "INSERT INTO locations (lat,lon,base_name,nearest_city) VALUES(?,?,?,?)"
   );
 
-  // Random data from Mockaroo - Credit to Rom React ©
+  // Random data from Mockaroo
   const detailes = [
     [47.3591366, 2.8002946, "Screamer, crested", "Orléans"],
     [40.97465, 117.943348, "Small-spotted genet", "Shuangqiao"],

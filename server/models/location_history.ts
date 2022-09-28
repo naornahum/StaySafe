@@ -5,7 +5,7 @@ export function insertLocationsHistory() {
     "INSERT INTO locations_history (arrival_date,departure_date,missile_id,location_id) VALUES(?,?,?,?)"
   );
 
-  // Random data from Mockaroo - Credit to Rom React ©
+  // Random data from Mockaroo
   const detailes = [
     ["6/7/1994", "1/20/2020", 1, 1],
     ["10/21/1996", "3/14/2022", 2, 2],

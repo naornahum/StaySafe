@@ -5,7 +5,7 @@ export function insertNurses() {
     "INSERT INTO nurses (nurse_name,clinic_id) VALUES(?,?)"
   );
 
-  // Random data from Mockaroo - Credit to Rom React ©
+  // Random data from Mockaroo
   const detailes = [["CLONAZEPAM", 1]];
 
   for (let index = 0; index < detailes.length; index++) {
