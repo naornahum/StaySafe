@@ -20,8 +20,9 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
-app.use("/missiles", nurseRouter);
-app.use("/officers", patientRouter);
+app.use("/clinics", clinicRouter);
+app.use("/nurses", nurseRouter);
+app.use("/patients", patientRouter);
 app.use("/locations", locationRouter);
 app.use("/locationsHistory", locationHistoryRouter);
 

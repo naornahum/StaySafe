@@ -9,7 +9,7 @@ function createDB() {
 
   const db = new Database("Project.db", { verbose: console.log });
 
-  // Create table
+  // Create tables
   const prepareStatements = [
     db.prepare(
       `CREATE TABLE IF NOT EXISTS patients(

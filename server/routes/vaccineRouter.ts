@@ -1,40 +1,40 @@
 import { Router } from "express";
 import {
-  createPatient,
-  deletePatientByID,
-  getPatientByID,
-  getPatients,
-  updatePatient,
-} from "../models/patients";
+  createVaccines,
+  deleteVaccineByID,
+  getVaccineByID,
+  getVaccines,
+  updateVaccine,
+} from "../models/vaccines";
 
-const patientRouter = Router();
+const vaccineRouter = Router();
 
-// Get all patients
-patientRouter.get("/", (req, res) => {
-  const patients = getPatients();
-  res.send(patients);
+// Get all vaccines
+vaccineRouter.get("/", (req, res) => {
+  const vaccines = getVaccines();
+  res.send(vaccines);
 });
 
-patientRouter.get("/:id", (req, res) => {
-  const patient = getPatientByID(req.params.id);
-  res.send(patient);
+vaccineRouter.get("/:id", (req, res) => {
+  const vaccine = getVaccineByID(req.params.id);
+  res.send(vaccine);
 });
 
-patientRouter.post("/", (req, res) => {
+vaccineRouter.post("/", (req, res) => {
   const body = req.body;
-  const newPatient = createPatient(body);
-  res.send({ id: newPatient.lastInsertRowid });
+  const newVaccine = createVaccines(body);
+  res.send({ id: newVaccine.lastInsertRowid });
 });
 
-patientRouter.put("/:id", (req, res) => {
+vaccineRouter.put("/:id", (req, res) => {
   const body = req.body;
-  const updatedPatient = updatePatient(req.params.id, body);
-  res.send(updatedPatient);
+  const updatedVaccine = updateVaccine(req.params.id, body);
+  res.send(updatedVaccine);
 });
 
-patientRouter.delete("/:id", (req, res) => {
-  const deletedPatient = deletePatientByID(req.params.id);
-  res.send(deletedPatient);
+vaccineRouter.delete("/:id", (req, res) => {
+  const deletedVaccine = deleteVaccineByID(req.params.id);
+  res.send(deletedVaccine);
 });
 
-export default patientRouter;
+export default vaccineRouter;
