@@ -1,15 +1,15 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import nurseRouter from "./routes/nursesRouter";
-import { insertLocationsHistory } from "./models/location_history";
 import { insertNurses } from "./models/nurses";
 import { insertPatients } from "./models/patients";
-import locationHistoryRouter from "./routes/locationHistoryRouter";
+import locationHistoryRouter from "./routes/vaccineHistoryRouter";
 import patientRouter from "./routes/patientRouter";
 import vaccineRouter from "./routes/vaccineRouter";
 import clinicRouter from "./routes/clinicRouter";
 import { insertClinics } from "./models/clinics";
 import { insertVaccines } from "./models/vaccines";
+import { insertVaccinesHistory } from "./models/vaccine_history";
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -33,7 +33,7 @@ app.get("/init", (req, res) => {
   insertNurses();
   insertVaccines;
   insertPatients();
-  insertLocationsHistory();
+  insertVaccinesHistory();
   res.send(true);
 });
 

@@ -3,11 +3,11 @@ import fs from "fs";
 
 function createDB() {
   // Creates DB if not exists already
-  if (!fs.existsSync("./Project.db")) {
-    fs.openSync("./Project.db", "w");
+  if (!fs.existsSync("./StaySafe.db")) {
+    fs.openSync("./StaySafe.db", "w");
   }
 
-  const db = new Database("Project.db", { verbose: console.log });
+  const db = new Database("StaySafe.db", { verbose: console.log });
 
   // Create tables
   const prepareStatements = [

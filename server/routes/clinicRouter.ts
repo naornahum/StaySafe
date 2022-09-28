@@ -7,38 +7,38 @@ import {
   updateClinic,
 } from "../models/clinics";
 
-const vaccineRouter = Router();
+const clinicRouter = Router();
 
 // Get all clinics
-vaccineRouter.get("/", (req, res) => {
+clinicRouter.get("/", (req, res) => {
   const clinics = getClinics();
   res.send(clinics);
 });
 
 // Get a clinic by ID
-vaccineRouter.get("/:id", (req, res) => {
+clinicRouter.get("/:id", (req, res) => {
   const clinic = getClinicByID(req.params.id);
   res.send(clinic);
 });
 
 // Create clinics
-vaccineRouter.post("/", (req, res) => {
+clinicRouter.post("/", (req, res) => {
   const body = req.body;
   const newClinic = createClinics(body);
   res.send({ id: newClinic.lastInsertRowid });
 });
 
 // Update clinic
-vaccineRouter.put("/:id", (req, res) => {
+clinicRouter.put("/:id", (req, res) => {
   const body = req.body;
   const updatedClinic = updateClinic(req.params.id, body);
   res.send(updatedClinic);
 });
 
 // Delete clinic
-vaccineRouter.delete("/:id", (req, res) => {
+clinicRouter.delete("/:id", (req, res) => {
   const deletedClinic = deleteClinicByID(req.params.id);
   res.send(deletedClinic);
 });
 
-export default vaccineRouter;
+export default clinicRouter;
