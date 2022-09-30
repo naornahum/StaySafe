@@ -38,4 +38,4 @@ http://localhost:4000/init
 
 Enjoy!
 
-![alt text](https://i.imgur.com/itEQ2SF.png)
+![alt text](https://i.imgur.com/ZyaIzGZ.png)

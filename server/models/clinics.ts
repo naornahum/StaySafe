@@ -3,7 +3,6 @@ import { completedDatabase } from "../database";
 export function insertClinics() {
   const statement = completedDatabase.prepare("INSERT INTO clinics (clinic_name) VALUES(?)");
 
-  // Random data from Mockaroo
   const detailes = [["Macabi"]];
 
   for (let index = 0; index < detailes.length; index++) {

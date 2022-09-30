@@ -2,11 +2,11 @@ import { completedDatabase } from "../database";
 
 export function insertVaccinesHistory() {
   const statement = completedDatabase.prepare(
-    "INSERT INTO vaccines_history (patient_id,nurse_id,clinic_id,vaccine_date) VALUES(?,?,?,?)"
+    "INSERT INTO vaccines_history (patient_id,nurse_id,clinic_id,vaccine_id,vaccine_date) VALUES(?,?,?,?,?)"
   );
 
   // Random data from Mockaroo
-  const detailes = [[1, 1, 1, "1/20/2020"]];
+  const detailes = [[1, 1, 1, 1, "01/01/2020"]];
 
   for (let index = 0; index < detailes.length; index++) {
     const element = detailes[index];

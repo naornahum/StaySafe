@@ -31,7 +31,7 @@ app.use("/locationsHistory", vaccineHistoryRouter);
 app.get("/init", (req, res) => {
   insertClinics();
   insertNurses();
-  insertVaccines;
+  insertVaccines();
   insertPatients();
   insertVaccinesHistory();
   res.send(true);

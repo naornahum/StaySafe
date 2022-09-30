@@ -4,7 +4,7 @@ export function insertVaccines() {
   const statement = completedDatabase.prepare("INSERT INTO vaccines (vaccine_name) VALUES(?)");
 
   // Random data from Mockaroo
-  const detailes = [["NAOR"]];
+  const detailes = [["HPV"]];
 
   for (let index = 0; index < detailes.length; index++) {
     const element = detailes[index];

@@ -49,17 +49,20 @@ function createDB() {
 
     db.prepare(
       `CREATE TABLE IF NOT EXISTS vaccines_history(
-              patient_id INTEGER NOT NULL,
-              nurse_id INTEGER NOT NULL,
               clinic_id INTEGER NOT NULL,
+              vaccine_id INTEGER NOT NULL,
+              nurse_id INTEGER NOT NULL,
+              patient_id INTEGER NOT NULL,
               vaccine_date INTEGER NOT NULL,
+              FOREIGN KEY(clinic_id)
+                  REFERENCES clinics(clinic_id)
+              FOREIGN KEY(vaccine_id)
+                  REFERENCES vaccines(vaccine_id),
               FOREIGN KEY(patient_id)
                   REFERENCES patients(patient_id),
               FOREIGN KEY(nurse_id)
                   REFERENCES nurses(nurse_id),
-              FOREIGN KEY(clinic_id)
-                  REFERENCES clinics(clinic_id)
-              CONSTRAINT PK_VaccineHistory PRIMARY KEY (patient_id,nurse_id,clinic_id)
+              CONSTRAINT PK_VaccineHistory PRIMARY KEY (patient_id,nurse_id,clinic_id,vaccine_id)
           )`
     ),
   ];
