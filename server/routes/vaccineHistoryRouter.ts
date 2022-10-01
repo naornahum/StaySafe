@@ -3,7 +3,7 @@ import {
   deleteVaccineHistoryByID,
   getVaccineHistoryByID,
   getVaccinesHistory,
-} from "../models/vaccine_history";
+} from "../models/vaccines_history";
 
 const vaccineHistoryRouter = Router();
 

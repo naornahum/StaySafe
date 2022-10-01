@@ -18,23 +18,25 @@ import "./App.css";
 import EditOfficer from "./components/editOfficer/editOfficer";
 
 const ENDPOINTS = {
-  OFFICERS: "officers",
-  LOCATIONS: "locations",
-  MISSILES: "missiles",
-  LOCATIONS_HISTORY: "locationshistory",
+  CLINICS: "clinics",
+  NURSES: "nurses",
+  VACCINES: "vaccines",
+  PATIENTS: "patients",
+  VACCINES_HISTORY: "vaccineshistory",
 };
 
 const idMaps = {
-  [ENDPOINTS.OFFICERS]: "officer_id",
-  [ENDPOINTS.LOCATIONS]: "location_id",
-  [ENDPOINTS.MISSILES]: "missile_id",
-  [ENDPOINTS.LOCATIONS_HISTORY]: "location_history_id",
+  [ENDPOINTS.CLINICS]: "clinic_id",
+  [ENDPOINTS.NURSES]: "nurse_id",
+  [ENDPOINTS.VACCINES]: "vaccine_id",
+  [ENDPOINTS.PATIENTS]: "patient_id",
+  [ENDPOINTS.VACCINES_HISTORY]: "PK_VaccineHistory",
 };
 
 const baseUrl = "http://localhost:4000/";
 
 function App() {
-  const [selectedTable, setSelectedTable] = useState(ENDPOINTS.OFFICERS);
+  const [selectedTable, setSelectedTable] = useState(ENDPOINTS.CLINICS);
   const [rows, setRows] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
@@ -85,17 +87,20 @@ function App() {
         <h1>StaySafe</h1>
       </div>
       <div className="button-wrapper">
-        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.OFFICERS)}>
-          Officers
+        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.CLINICS)}>
+          Clinics
         </Button>
-        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.LOCATIONS)}>
-          Locations
+        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.NURSES)}>
+          Nurses
         </Button>
-        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.MISSILES)}>
-          Missiles
+        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.PATIENTS)}>
+          Patients
         </Button>
-        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.LOCATIONS_HISTORY)}>
-          Locations history
+        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.VACCINES)}>
+          Vaccines
+        </Button>
+        <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.VACCINES_HISTORY)}>
+          Vaccines history
         </Button>
       </div>
       <div>
@@ -142,7 +147,7 @@ function App() {
             </Table>
           </TableContainer>
         ) : (
-          <div>No data</div>
+          <div className="noData">No data</div>
         )}
       </div>
       <Dialog open={isEdit} onClose={() => setIsEdit(false)}>

@@ -9,7 +9,7 @@ import { insertNurses } from "./models/nurses";
 import { insertPatients } from "./models/patients";
 import { insertClinics } from "./models/clinics";
 import { insertVaccines } from "./models/vaccines";
-import { insertVaccinesHistory } from "./models/vaccine_history";
+import { insertVaccinesHistory } from "./models/vaccines_history";
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
