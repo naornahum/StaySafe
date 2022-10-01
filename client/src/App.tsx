@@ -82,7 +82,7 @@ function App() {
   return (
     <div>
       <div>
-        <h1>Nuclear Project</h1>
+        <h1>StaySafe</h1>
       </div>
       <div className="button-wrapper">
         <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.OFFICERS)}>
