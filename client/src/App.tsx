@@ -16,44 +16,30 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
 import EditOfficer from "./components/editOfficer/editOfficer";
-
-const ENDPOINTS = {
-  CLINICS: "clinics",
-  NURSES: "nurses",
-  VACCINES: "vaccines",
-  PATIENTS: "patients",
-  VACCINES_HISTORY: "vaccineshistory",
-};
-
-const idMaps = {
-  [ENDPOINTS.CLINICS]: "clinic_id",
-  [ENDPOINTS.NURSES]: "nurse_id",
-  [ENDPOINTS.VACCINES]: "vaccine_id",
-  [ENDPOINTS.PATIENTS]: "patient_id",
-  [ENDPOINTS.VACCINES_HISTORY]: "PK_VaccineHistory",
-};
+import { ENDPOINTS, idMaps } from './constants';
 
 const baseUrl = "http://localhost:4000/";
+// const baseUrl = process.env.VAR_NAME;
 
 function App() {
   const [selectedTable, setSelectedTable] = useState(ENDPOINTS.CLINICS);
   const [rows, setRows] = useState([]);
-  const [isEdit, setIsEdit] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
 
   useEffect(() => {
+    const fetchData = async (endpoint: string) => {
+      try {
+        const data = await axios.get(baseUrl + endpoint);
+        setRows(data.data);
+        console.log(data.data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
     fetchData(selectedTable);
   }, [selectedTable]);
-
-  const fetchData = async (endpoint: string) => {
-    try {
-      const data = await axios.get(baseUrl + endpoint);
-      setRows(data.data);
-      console.log(data.data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   const deleteRow = async (id: any) => {
     try {
