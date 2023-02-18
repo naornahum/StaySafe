@@ -8,7 +8,7 @@ export function insertVaccinesHistory() {
   // Random data from Mockaroo
   const detailes = [
     [1, 1, 1, 1, "01/01/2020"],
-    [1, 1, 1, 2, "01/01/2020"],
+    [1, 1, 1, 2, "21/01/2021"],
   ];
 
   for (let index = 0; index < detailes.length; index++) {
