@@ -3,7 +3,7 @@ export const ENDPOINTS = {
     NURSES: "nurses",
     VACCINES: "vaccines",
     PATIENTS: "patients",
-    VACCINES_HISTORY: "vaccineshistory",
+    VACCINES_HISTORY: "vaccines_history",
   };
 
 export const idMaps = {

@@ -6,7 +6,7 @@ export function insertNurses() {
   );
 
   // Random data from Mockaroo
-  const detailes = [["CLONAZEPAM", 1]];
+  const detailes = [["Shir Vardi", 1]];
 
   for (let index = 0; index < detailes.length; index++) {
     const element = detailes[index];

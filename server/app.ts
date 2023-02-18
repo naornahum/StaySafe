@@ -26,7 +26,7 @@ app.use("/clinics", clinicRouter);
 app.use("/nurses", nurseRouter);
 app.use("/vaccines", vaccineRouter);
 app.use("/patients", patientRouter);
-app.use("/locationsHistory", vaccineHistoryRouter);
+app.use("/vaccines_history", vaccineHistoryRouter);
 
 app.get("/init", (req, res) => {
   insertClinics();

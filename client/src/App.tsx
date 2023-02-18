@@ -30,6 +30,8 @@ function App() {
   useEffect(() => {
     const fetchData = async (endpoint: string) => {
       try {
+        console.log(baseUrl+endpoint);
+        
         const data = await axios.get(baseUrl + endpoint);
         setRows(data.data);
         console.log(data.data);
@@ -86,7 +88,7 @@ function App() {
           Vaccines
         </Button>
         <Button variant="contained" onClick={() => setSelectedTable(ENDPOINTS.VACCINES_HISTORY)}>
-          Vaccines history
+          Vaccines History
         </Button>
       </div>
       <div>
